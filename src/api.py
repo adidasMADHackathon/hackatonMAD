@@ -13,20 +13,20 @@ TRAIN_STEPS = 1000
 @app.route("/forecast", methods=['POST'])
 def forecast():
     payload = request.get_json()
-    # data = json.loads(payload)[0]
-    # predict_x = {
-        # "anger": [0.5360],
-        # "contempt": [0.1651],
-        # "disgust": [0.1309],
-        # "fear": [0.0271],
-        # "happiness": [0.0286],
-        # "neutral": [0.0804],
-        # "sadness": [0.0183],
-        # "surprise": [0.0136]
-    # }
+
+    data = {
+        'anger': [payload['anger']],
+        'contempt': [payload['contempt']],
+        'disgust': [payload['disgust']],
+        'fear': [payload['fear']],
+        'happiness': [payload['happiness']],
+        'neutral': [payload['neutral']],
+        'sadness': [payload['sadness']],
+        'surprise': [payload['surprise']]
+    }
 
     classifier = premade_estimator.loadEstimator(BATCH_SIZE, TRAIN_STEPS)
-    score, probability = premade_estimator.predict(classifier, BATCH_SIZE, payload)
+    score, probability = premade_estimator.predict(classifier, BATCH_SIZE, data)
 
     return json.dumps([score, 100 * probability])
 
