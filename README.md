@@ -1,4 +1,7 @@
-# Penalty forecast app
+# Penalty forecast app | Repo 1/2
+## Team Centaury 
+
+[Repo 2](https://github.com/soyjuanmacias/centaury-app-react-native)
 
 Run backend:
 `docker run -p 5000:5000 gfelixc/hackaton`
